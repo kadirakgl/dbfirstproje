@@ -1,0 +1,66 @@
+@model StudentManagement.Web.Models.Student
+
+@{
+    ViewData["Title"] = "Öğrenci Sil";
+}
+
+<h1>Öğrenci Sil</h1>
+
+<div class="alert alert-danger">
+    <h3>Bu öğrenciyi silmek istediğinizden emin misiniz?</h3>
+</div>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">ID</dt>
+        <dd class="col-sm-10">@Model.StudentId</dd>
+        
+        <dt class="col-sm-2">Ad</dt>
+        <dd class="col-sm-10">@Model.FirstName</dd>
+        
+        <dt class="col-sm-2">Soyad</dt>
+        <dd class="col-sm-10">@Model.LastName</dd>
+        
+        <dt class="col-sm-2">Email</dt>
+        <dd class="col-sm-10">@Model.Email</dd>
+        
+        <dt class="col-sm-2">Doğum Tarihi</dt>
+        <dd class="col-sm-10">@(Model.DateOfBirth?.ToString() ?? "-")</dd>
+        
+        <dt class="col-sm-2">Kayıt Tarihi</dt>
+        <dd class="col-sm-10">@Model.EnrollmentDate.ToString()</dd>
+    </dl>
+    
+    @if (Model.StudentCourses != null && Model.StudentCourses.Any())
+    {
+        <h3>Kayıtlı Kurslar</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Kurs Adı</th>
+                    <th>Açıklama</th>
+                    <th>Kredi</th>
+                    <th>Not</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var course in Model.StudentCourses)
+                {
+                    <tr>
+                        <td>@(course.Course?.CourseName ?? "-")</td>
+                        <td>@(course.Course?.Description ?? "-")</td>
+                        <td>@(course.Course?.Credits ?? 0)</td>
+                        <td>@(course.Grade?.ToString() ?? "-")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="StudentId" />
+    <input type="submit" value="Sil" class="btn btn-danger" />
+    <a asp-action="Index" class="btn btn-secondary">Geri Dön</a>
+</form> 

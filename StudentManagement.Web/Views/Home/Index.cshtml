@@ -1,0 +1,68 @@
+﻿@{
+    ViewData["Title"] = "Ana Sayfa";
+}
+
+<div class="home-background">
+    <div class="container-fluid home-content">
+        <div class="row justify-content-center align-items-center" style="min-height: 100vh;">
+            <div class="col-lg-8 col-md-10 col-sm-12">
+                <div class="text-center mb-5">
+                    <div class="school-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h1 class="display-4 fw-bold text-white mb-3">Öğrenci Yönetim Sistemi</h1>
+                    <p class="lead text-white-50">Modern ve kullanıcı dostu öğrenci yönetim platformu</p>
+                </div>
+                
+                <div class="home-card">
+                    <div class="card-header text-center">
+                        <h3 class="mb-0">
+                            <i class="fas fa-users me-2"></i>
+                            Öğrenci İşlemleri
+                        </h3>
+                    </div>
+                    <div class="card-body text-center">
+                        <p class="welcome-text">
+                            Öğrenci bilgilerini kolayca yönetebilir, yeni öğrenci ekleyebilir, 
+                            mevcut öğrencileri düzenleyebilir ve detaylı raporlar alabilirsiniz.
+                        </p>
+                        <div class="d-flex flex-wrap justify-content-center gap-3">
+                            <a asp-controller="Students" asp-action="Index" class="btn btn-custom btn-primary-custom">
+                                <i class="fas fa-list me-2"></i>
+                                Öğrenci Listesi
+                            </a>
+                            <a asp-controller="Students" asp-action="Create" class="btn btn-custom btn-success-custom">
+                                <i class="fas fa-plus me-2"></i>
+                                Yeni Öğrenci
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mt-5">
+                    <div class="col-md-4 text-center">
+                        <div class="text-white mb-3">
+                            <i class="fas fa-user-graduate fa-2x"></i>
+                        </div>
+                        <h5 class="text-white">Öğrenci Kayıt</h5>
+                        <p class="text-white-50">Yeni öğrencileri sisteme kolayca kaydedin</p>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <div class="text-white mb-3">
+                            <i class="fas fa-edit fa-2x"></i>
+                        </div>
+                        <h5 class="text-white">Bilgi Güncelleme</h5>
+                        <p class="text-white-50">Öğrenci bilgilerini güncelleyin ve düzenleyin</p>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <div class="text-white mb-3">
+                            <i class="fas fa-chart-bar fa-2x"></i>
+                        </div>
+                        <h5 class="text-white">Raporlama</h5>
+                        <p class="text-white-50">Detaylı öğrenci raporları ve istatistikler</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+@model IEnumerable<StudentManagement.Web.Models.Student>
+
+@{
+    ViewData["Title"] = "Öğrenci Listesi";
+    var currentSort = ViewBag.CurrentSort as string ?? "asc";
+    var searchId = ViewBag.SearchId as int?;
+    var totalCount = ViewBag.TotalCount as int? ?? 0;
+}
+
+<h1>Öğrenci Listesi
+    <span class="badge bg-info text-dark" style="font-size:16px;">Toplam: @totalCount</span>
+</h1>
+
+<form method="get" class="row g-3 mb-3">
+    <div class="col-auto">
+        <input type="number" name="searchId" value="@(searchId.HasValue ? searchId.ToString() : "")" class="form-control" placeholder="ID'ye göre ara" min="1" />
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary">Ara</button>
+        <a asp-action="Index" class="btn btn-secondary">Tümünü Göster</a>
+    </div>
+    <div class="col-auto">
+        <a asp-action="Index" asp-route-sortOrder="asc" class="btn btn-outline-dark @(currentSort=="asc" ? "active" : "")">A-Z</a>
+        <a asp-action="Index" asp-route-sortOrder="desc" class="btn btn-outline-dark @(currentSort=="desc" ? "active" : "")">Z-A</a>
+    </div>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Email</th>
+            <th>Doğum Tarihi</th>
+            <th>Kayıt Tarihi</th>
+            <th>Kurs Sayısı</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>@item.StudentId</td>
+            <td>@item.FirstName</td>
+            <td>@item.LastName</td>
+            <td>@item.Email</td>
+            <td>@(item.DateOfBirth?.ToString() ?? "-")</td>
+            <td>@item.EnrollmentDate.ToString()</td>
+            <td>@item.StudentCourses.Count</td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.StudentId" class="btn btn-info btn-sm">Detay</a>
+                <a asp-action="Delete" asp-route-id="@item.StudentId" class="btn btn-danger btn-sm">Sil</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table> 
