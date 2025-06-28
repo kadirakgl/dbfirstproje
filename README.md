@@ -1,2 +1,0 @@
-# dbfirstproje
-c# dbfirst proje
